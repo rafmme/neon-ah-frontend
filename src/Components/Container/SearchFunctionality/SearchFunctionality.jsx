@@ -162,6 +162,7 @@ SearchFunctionality.propTypes = {
   following: PropTypes.arrayOf(PropTypes.shape(PropTypes.string.isRequired)).isRequired,
   articleTagOrAuthorDatas: PropTypes.arrayOf(PropTypes.shape(PropTypes.string.isRequired)).isRequired,
   statusCode: PropTypes.number.isRequired,
+  searchInputValue: PropTypes.string.isRequired,
   searchByOptionApiCall: PropTypes.func.isRequired,
   bookmarkArticle: PropTypes.func.isRequired,
   followAnAuthor: PropTypes.func.isRequired,
