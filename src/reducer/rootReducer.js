@@ -8,6 +8,8 @@ import searchFunctionalityReducer from './searchFunctionality/searchFunctionalit
 import articleReducer from './articleReducer/articleReducer';
 import homePageArticlesReducer from './homePageArticles/homePageArticlesReducer';
 import tagsReducer from './tags/tagsReducer';
+import readArticleReducer from './readArticle/readArticleReducer';
+import rateArticleReducer from './rateArticle/rateArticleReducer';
 
 const reducers = combineReducers({
   sendEmailReducer,
@@ -18,7 +20,9 @@ const reducers = combineReducers({
   searchFunctionalityReducer,
   article: articleReducer,
   homePageArticlesReducer,
-  tagsReducer
+  tagsReducer,
+  readArticleReducer,
+  rateArticleReducer
 });
 
 export default reducers;

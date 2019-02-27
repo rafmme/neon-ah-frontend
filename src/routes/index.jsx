@@ -10,6 +10,7 @@ import ConfirmPage from '../Components/View/ConfirmationPage/ConfirmationPage';
 import SearchFunctionality from '../Components/Container/SearchFunctionality/SearchFunctionality';
 import CreateArticleDefault from '../Components/View/CreateArticle/CreateArticle';
 import AuthenticatedRoute from '../Components/Container/ProtectedRoute/ProtectedRoute';
+import SingleArticle from '../Components/Container/SingleArticle/SingleArticle';
 import Home from '../Components/Container/Home/Home';
 
 const Routes = () => (
@@ -24,6 +25,7 @@ const Routes = () => (
       <Route path="/resend-verification" component={EmailConfirmation} />
       <AuthenticatedRoute path="/article/new" component={CreateArticleDefault} exact />
       <Route path="/confirmation" exact component={ConfirmPage} />
+      <Route path="/articles/read/:slug" component={SingleArticle} />
       <Route component={NotFound} />
     </Switch>
   </Router>
