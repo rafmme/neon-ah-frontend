@@ -77,7 +77,6 @@ export class LoggedInHeader extends Component {
           {/* istanbul ignore next */ notificationList.filter(message => message.isRead === false).length > 0 && (
             <Icon name="circle" size="tiny" style={{ position: 'absolute', top: '0px', left: '13px', color: 'red' }} />
           )}
-          <NotificationBox onClose={this.onPageScroll} open={showNotificationBox} notificationList={notificationList} />
         </Icon>
         <div className="image">
           <Image
@@ -93,6 +92,7 @@ export class LoggedInHeader extends Component {
           />
           <ImageDropdown userinfo={loggedInUserData} open={showDropdown} />
         </div>
+        <NotificationBox onClose={this.onPageScroll} open={showNotificationBox} notificationList={notificationList} />
       </div>
     );
   }
@@ -123,7 +123,8 @@ LoggedInHeader.propTypes = {
     articles: [],
     following: [],
     followers: []
-  })
+  }),
+  getUserDataById: PropTypes.func.isRequired
 };
 
 LoggedInHeader.defaultProps = {
@@ -144,22 +145,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(LoggedInHeader);
-
-// {
-//   Object.keys(loggedInUserData.length > 0) ? (
-//     <div className="image">
-//       <Image
-//         src={
-//           loggedInUserData.img
-//             ? loggedInUserData.img
-//             : 'https://res.cloudinary.com/jesseinit/image/upload/v1550502499/neon-ah/user.svg'
-//         }
-//         avatar
-//         style={ { marginLeft: '10px', marginRight: '10px', cursor: 'pointer' } }
-//         className="profile-img"
-//         onClick={ this.handleImageClick }
-//       />
-//       <ImageDropdown userinfo={ loggedInUserData } open={ showDropdown } />
-//     </div>
-//   ) : null
-// }
