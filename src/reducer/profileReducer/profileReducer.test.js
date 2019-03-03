@@ -8,7 +8,8 @@ const initialState = {
   error: '',
   isSelf: true,
   message: '',
-  visible: false
+  visible: false,
+  loadingBtn: false
 };
 
 describe('Profile reducer tests', () => {
@@ -70,7 +71,7 @@ describe('Profile reducer tests', () => {
 
   test('handles update user profile success', () => {
     const payload = {
-      data: {
+      loggedInUserData: {
         bio: 'NY Times Best Selling Author',
         email: 'samuel.adeniran@andela.com',
         fullName: 'Samuel Adeniran',
@@ -82,7 +83,8 @@ describe('Profile reducer tests', () => {
       },
       message: 'Profile updated successfully',
       isSelf: true,
-      visible: true
+      visible: true,
+      loadingBtn: false
     };
     const action = { type: profileAction.UPDATE_USER_PROFILE_SUCCESS, payload };
 

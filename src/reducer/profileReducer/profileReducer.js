@@ -5,7 +5,8 @@ const initialState = {
   error: '',
   isSelf: true,
   message: '',
-  visible: false
+  visible: false,
+  loadingBtn: false
 };
 
 const profileReducer = (state = initialState, { type, payload }) => {
@@ -17,10 +18,21 @@ const profileReducer = (state = initialState, { type, payload }) => {
       };
     case 'FETCH_USER_PROFILE_FAILURE':
       return { ...state, ...payload };
-    case 'UPDATE_USER_PROFILE_SUCCESS':
+
+    case 'START_USER_UPDATE_PROFILE':
       return {
         ...state,
         ...payload
+      };
+
+    case 'UPDATE_USER_PROFILE_SUCCESS':
+      return {
+        ...state,
+        loggedInUserData: { ...state.loggedInUserData, ...payload.loggedInUserData },
+        message: payload.message,
+        visible: payload.visible,
+        isSelf: payload.isSelf,
+        loadingBtn: payload.loadingBtn
       };
     case 'UPDATE_USER_PROFILE_FAILURE':
       return { ...state, ...payload };
