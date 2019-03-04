@@ -13,9 +13,7 @@ const profileReducer = (state = initialState, { type, payload }) => {
     case 'FETCH_USER_PROFILE_SUCCESS':
       return {
         ...state,
-        data: payload.data,
-        isLoading: payload.isLoading,
-        isSelf: payload.isSelf
+        ...payload
       };
     case 'FETCH_USER_PROFILE_FAILURE':
       return { ...state, ...payload };

@@ -8,7 +8,6 @@ const searchByOptionApiCall = jest.fn();
 const props = {
   bookmarks: [],
   following: [],
-  articleTagOrAuthorDatas: [{ articles: 's' }],
   statusCode: 200,
   searchByOptionApiCall: jest.fn(),
   bookmarkArticle: jest.fn(),
@@ -33,12 +32,17 @@ const store = {
       },
       searchFunctionalityReducer: {
         statusCode: 200,
-        articleTagOrAuthorDatas: [],
+        articleTagOrAuthorDatas: {
+          articles: {
+            rows: []
+          }
+        },
         bookmarks: [],
         isBookmark: 'bookmark',
         following: [],
         query: 'title',
-        searching: true
+        searching: true,
+        searchInputValue: ''
       },
       auth: {
         isAuthenticated: false
@@ -59,6 +63,8 @@ const wrapper = mount(
   </Provider>
 );
 
+wrapper.setProps({ articleTagOrAuthorDatas: { articles: { rows: [] } } });
+
 describe('<SearchFunctionality />', () => {
   it('renders the component successfully', () => {
     expect(wrap).toMatchSnapshot();
@@ -66,11 +72,6 @@ describe('<SearchFunctionality />', () => {
 
   it('should simulate an input change', () => {
     wrapper.find('input').simulate('change', {});
-    expect(searchByOptionApiCall.mock.calls.length).toEqual(0);
-  });
-
-  it('should simulate a select change', () => {
-    wrapper.find('select').simulate('change', {});
     expect(searchByOptionApiCall.mock.calls.length).toEqual(0);
   });
 

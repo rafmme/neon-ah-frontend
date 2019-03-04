@@ -2,7 +2,6 @@ import makeRequest from '../../utils/axiosSetup';
 import isTokenValid from '../../utils/auth/jwtDecode';
 import getToken from '../../utils/auth/authentication';
 
-const token = getToken.getUserToken();
 // // action type
 export const UPDATE_ARTICLE_TAG_OR_AUTHOR_SUCCESS = 'UPDATE_ARTICLE_TAG_OR_AUTHOR_SUCCESS';
 export const UPDATE_ARTICLE_TAG_OR_AUTHOR_FAILURE = 'UPDATE_ARTICLE_TAG_OR_AUTHOR_FAILURE';
@@ -12,6 +11,15 @@ export const POST_BOOKMARK_FAILURE = 'POST_BOOKMARK_FAILURE';
 export const POST_BOOKMARK_SUCCESS = 'POST_BOOKMARK_SUCCESS';
 export const GET_FOLLOWING_FAILURE = 'GET_FOLLOWING_FAILURE';
 export const GET_FOLLOWING_SUCCESS = 'GET_FOLLOWING_SUCCESS';
+export const GET_SEARCH_INPUT_VALUE = 'GET_SEARCH_INPUT_VALUE';
+
+export const sendBookmarkSlug = slug => {
+  return { type: 'SEND_ARTICLE_SLUG', payload: slug };
+};
+
+export const sendUserName = userName => {
+  return { type: 'SEND_AUTHOR_NAME', payload: userName };
+};
 
 // action creator
 export const updateWithArticleTagOrAuthor = (statusCode, data) => {
@@ -25,9 +33,9 @@ export const getfollowingAuthorApiCall = username => {
         method: 'GET'
       });
       if (response.data.message === `${username} currently has no following`) {
-        dispatch({ type: GET_FOLLOWING_SUCCESS, payload: [] });
+        dispatch({ type: GET_FOLLOWING_SUCCESS, payload: { value: [], username: '' } });
       } else {
-        dispatch({ type: GET_FOLLOWING_SUCCESS, payload: response.data.payload.following });
+        dispatch({ type: GET_FOLLOWING_SUCCESS, payload: { value: response.data.payload.following, username: '' } });
       }
     } catch (error) {
       const {
@@ -39,6 +47,7 @@ export const getfollowingAuthorApiCall = username => {
 };
 
 export const followAnAuthorApiCall = username => {
+  const token = getToken.getUserToken();
   const decoded = isTokenValid(token);
   return async dispatch => {
     try {
@@ -62,9 +71,9 @@ export const getUserBookmarkApiCall = () => {
         method: 'GET'
       });
       if (response.data.message === 'You have not bookmarked any article yet') {
-        dispatch({ type: GET_BOOKMARK_SUCCESS, payload: [] });
+        dispatch({ type: GET_BOOKMARK_SUCCESS, payload: { value: [], slug: '' } });
       } else {
-        dispatch({ type: GET_BOOKMARK_SUCCESS, payload: response.data.payload.bookmarks });
+        dispatch({ type: GET_BOOKMARK_SUCCESS, payload: { value: response.data.payload.bookmarks, slug: '' } });
       }
     } catch (error) {
       dispatch({ type: GET_BOOKMARK_FAILURE, payload: [] });
@@ -85,10 +94,11 @@ export const bookmarkArticleApiCall = slug => {
   };
 };
 
-export const searchByOptionApiCall = (option, parameter) => {
+export const searchByOptionApiCall = parameter => {
   return async dispatch => {
     try {
-      const response = await makeRequest(`/search?${option}=${parameter}`, {
+      const token = getToken.getUserToken();
+      const response = await makeRequest(`/search?keyword=${parameter}`, {
         method: 'GET'
       });
       const { statusCode, payload } = response.data;
@@ -106,5 +116,12 @@ export const searchByOptionApiCall = (option, parameter) => {
       } = error;
       dispatch({ type: UPDATE_ARTICLE_TAG_OR_AUTHOR_FAILURE, payload: data.data.statusCode });
     }
+  };
+};
+
+export const getSearchInputValue = value => {
+  return {
+    type: GET_SEARCH_INPUT_VALUE,
+    payload: value
   };
 };

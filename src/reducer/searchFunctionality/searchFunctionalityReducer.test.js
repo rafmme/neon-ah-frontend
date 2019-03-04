@@ -8,7 +8,10 @@ describe('Search functionality Reducer', () => {
       articleTagOrAuthorDatas: {},
       bookmarks: [],
       isBookmark: false,
-      following: []
+      slug: '',
+      following: [],
+      username: '',
+      searchInputValue: ''
     };
 
     expect(searchFunctionalityReducer(undefined, action)).toEqual(initialState);
@@ -21,7 +24,10 @@ describe('Search functionality Reducer', () => {
       articleTagOrAuthorDatas: {},
       bookmarks: [],
       isBookmark: false,
-      following: []
+      following: [],
+      slug: '',
+      username: '',
+      searchInputValue: ''
     };
 
     expect(searchFunctionalityReducer(undefined, action)).toEqual(expectedState);
@@ -33,7 +39,10 @@ describe('Search functionality Reducer', () => {
       articleTagOrAuthorDatas: {},
       bookmarks: [],
       isBookmark: false,
-      following: []
+      following: [],
+      slug: '',
+      username: '',
+      searchInputValue: ''
     };
 
     expect(searchFunctionalityReducer(undefined, action)).toEqual(expectedState);
@@ -45,19 +54,25 @@ describe('Search functionality Reducer', () => {
       articleTagOrAuthorDatas: {},
       bookmarks: [],
       isBookmark: false,
-      following: []
+      following: [],
+      slug: '',
+      username: '',
+      searchInputValue: ''
     };
 
     expect(searchFunctionalityReducer(undefined, action)).toEqual(expectedState);
   });
   test('should update the state when getting bookmark is successful', () => {
-    const action = { type: 'GET_BOOKMARK_SUCCESS', payload: [] };
+    const action = { type: 'GET_BOOKMARK_SUCCESS', payload: { value: [], slug: '' } };
     const expectedState = {
       statusCode: 0,
       articleTagOrAuthorDatas: {},
       bookmarks: [],
       isBookmark: false,
-      following: []
+      following: [],
+      slug: '',
+      username: '',
+      searchInputValue: ''
     };
 
     expect(searchFunctionalityReducer(undefined, action)).toEqual(expectedState);
@@ -69,7 +84,10 @@ describe('Search functionality Reducer', () => {
       articleTagOrAuthorDatas: {},
       bookmarks: [],
       isBookmark: false,
-      following: []
+      following: [],
+      slug: '',
+      username: '',
+      searchInputValue: ''
     };
 
     expect(searchFunctionalityReducer(undefined, action)).toEqual(expectedState);
@@ -81,7 +99,10 @@ describe('Search functionality Reducer', () => {
       articleTagOrAuthorDatas: {},
       bookmarks: [],
       isBookmark: true,
-      following: []
+      following: [],
+      slug: '',
+      username: '',
+      searchInputValue: ''
     };
 
     expect(searchFunctionalityReducer(undefined, action)).toEqual(expectedState);
@@ -93,19 +114,25 @@ describe('Search functionality Reducer', () => {
       articleTagOrAuthorDatas: {},
       bookmarks: [],
       isBookmark: true,
-      following: []
+      following: [],
+      slug: '',
+      username: '',
+      searchInputValue: ''
     };
 
     expect(searchFunctionalityReducer(undefined, action)).toEqual(expectedState);
   });
   test('should update the state when getting following is successful', () => {
-    const action = { type: 'GET_FOLLOWING_SUCCESS', payload: [] };
+    const action = { type: 'GET_FOLLOWING_SUCCESS', payload: { value: [], username: '' } };
     const expectedState = {
       statusCode: 0,
       articleTagOrAuthorDatas: {},
       bookmarks: [],
       isBookmark: false,
-      following: []
+      following: [],
+      slug: '',
+      username: '',
+      searchInputValue: ''
     };
 
     expect(searchFunctionalityReducer(undefined, action)).toEqual(expectedState);
@@ -117,7 +144,10 @@ describe('Search functionality Reducer', () => {
       articleTagOrAuthorDatas: {},
       bookmarks: [],
       isBookmark: false,
-      following: []
+      following: [],
+      slug: '',
+      username: '',
+      searchInputValue: ''
     };
 
     expect(searchFunctionalityReducer(undefined, action)).toEqual(expectedState);

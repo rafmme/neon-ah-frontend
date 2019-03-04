@@ -1,14 +1,8 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import Axios from 'axios';
 import { Provider } from 'react-redux';
-import configureStore from 'redux-mock-store';
 import { MemoryRouter } from 'react-router';
-// import { ProfilePage } from './ProfilePage';
 import ProfilePage from './ProfilePage';
-
-const mockStore = configureStore();
-let store;
 
 describe('Render ProfilePage Component ', () => {
   const wrapper = shallow(<ProfilePage />);
@@ -20,7 +14,7 @@ describe('Render ProfilePage Component ', () => {
 describe('<ProfilePage/>', () => {
   const props = {
     isLoading: false,
-    data: {
+    loggedInUserData: {
       bio: 'NY Times Best Selling Writer',
       email: 'samuel.adeniran@andela.com',
       fullName: 'Samuel Beef',
@@ -31,6 +25,7 @@ describe('<ProfilePage/>', () => {
       updatedAt: '2019-02-26T23:03:15.144Z',
       userName: 'sam'
     },
+
     match: {
       params: {
         username: 'sam'
@@ -51,7 +46,8 @@ describe('<ProfilePage/>', () => {
           error: '',
           isSelf: false,
           message: '',
-          visible: false
+          visible: false,
+          loggedInUserData: {}
         },
         signUpReducer: {
           isLoading: false,
@@ -83,37 +79,4 @@ describe('<ProfilePage/>', () => {
   it('should render component successfully', () => {
     expect(wrapper).toBeTruthy();
   });
-
-  // it('should render succesfully', () => {
-  //   const wrapper = shallow(
-  //     <ProfilePage
-  //       isLoading={props.isLoading}
-  //       data={props.data}
-  //       match={props.match}
-  //       history={props.history}
-  //       getUserData={props.getUserData}
-  //       isSelf={props.isSelf}
-  //       error={props.error}
-  //     />
-  //   );
-  //   expect(wrapper).toMatchSnapshot();
-  // });
-
-  // it('makes an api call in componentdidmount', () => {
-  //   const wrapper = mount(
-  //     <ProfilePage
-  //       isLoading={props.isLoading}
-  //       data={props.data}
-  //       match={props.match}
-  //       history={props.history}
-  //       getUserData={props.getUserData}
-  //       isSelf={props.isSelf}
-  //       error={props.error}
-  //     />
-  //   );
-  //   wrapper.instance.componentDidMount();
-  //   expect(wrapper)
-  //     .instance(getUserData())
-  //     .toBeCalled();
-  // });
 });
