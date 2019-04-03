@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const apiInstance = axios.create({
-  baseURL: 'https://neon-ah-staging.herokuapp.com/api/v1'
+  baseURL: 'http://10.0.1.217/api/v1'
 });
 
 const makeRequest = (url, options = { method: 'GET' }) => {
