@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const apiInstance = axios.create({
-    baseURL: 'http://localhost/api/v1'
+    baseURL: 'http://127.0.0.1/api/v1'
 });
 
 const makeRequest = (url, options = { method: 'GET' }) => {
