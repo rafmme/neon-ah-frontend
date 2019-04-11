@@ -7,4 +7,8 @@
 ## Vision
 
 Create a community of like minded authors to foster inspiration and innovation
-by leveraging the modern web. AH for the world
+by leveraging the modern web.
+
+<div style="text-align:center">
+    <img src="./gif/usage.gif" />
+</div>
