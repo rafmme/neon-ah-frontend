@@ -7,4 +7,5 @@ src/components/LandingPage/__snapshots__
 src/components/view/LoginForm/__snapshots__
 .DS_Store
 package-lock.json
+.env
 
